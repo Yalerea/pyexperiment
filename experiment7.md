@@ -281,45 +281,630 @@ classDiagram
 请将实验过程与结果放在这里，包括：
 
 - [第一部分 Python面向对象编程](#第一部分)
-- [第二部分 Codewars Kata挑战](#第二部分)
-- [第三部分 使用Mermaid绘制程序流程图](#第三部分)
-
-注意代码需要使用markdown的代码块格式化，例如Git命令行语句应该使用下面的格式：
-
-![Git命令](/Experiments/img/2023-07-26-22-48.png)
-
-显示效果如下：
-
-```bash
-git init
-git add .
-git status
-git commit -m "first commit"
-```
-
-如果是Python代码，应该使用下面代码块格式，例如：
-
-![Python代码](/Experiments/img/2023-07-26-22-52-20.png)
-
-显示效果如下：
 
 ```python
-def add_binary(a,b):
-    return bin(a+b)[2:]
+# 1
+class Restaurant:
+    def __init__(self,restaurant_name,cuisine_type):
+        self.restaurant_name=restaurant_name
+        self.cuisine_type=cuisine_type
+    
+    def describe_restaurant(self):
+        print(self.restaurant_name)
+        print(self.cuisine_type)
+        
+    def open_restaurant(self):
+        print("The restaurant is opened.")
+        
+restaurant = Restaurant('MC','US')
+print(restaurant.restaurant_name)
+print(restaurant.cuisine_type)
+restaurant.describe_restaurant()
+restaurant.open_restaurant()
+
+# 2
+class Restaurant:
+    def __init__(self,restaurant_name,cuisine_type):
+        self.restaurant_name=restaurant_name
+        self.cuisine_type=cuisine_type
+    
+    def describe_restaurant(self):
+        print(self.restaurant_name)
+        print(self.cuisine_type)
+        
+    def open_restaurant(self):
+        print("The restaurant is opened.")
+        
+re1 = Restaurant('A','fish')
+re2 = Restaurant('B','egg')
+re3 = Restaurant('C','milk')
+re1.describe_restaurant()
+re2.describe_restaurant()
+re3.describe_restaurant()
+
+# 3
+class User:
+    def __init__(self,first_name,last_name,age,country):
+        self.first_name=first_name
+        self.last_name=last_name
+        self.age=age
+        self.country=country
+        
+    def describe_user(self):
+        print(self.first_name,self.last_name,self.age,self.country)
+    def greet_user(self):
+        print("Hello "+self.first_name)
+        
+user1=User('A','B',20,'China')
+user1.describe_user()   
+user1.greet_user()
+user2=User('C','D',21,'Japan')
+user2.describe_user()
+user2.greet_user()       
+
+# 4
+class Restaurant:
+    def __init__(self,restaurant_name,cuisine_type):
+        self.restaurant_name=restaurant_name
+        self.cuisine_type=cuisine_type
+        self.number_served=0
+    
+    def describe_restaurant(self):
+        print(self.restaurant_name)
+        print(self.cuisine_type)
+        
+    def open_restaurant(self):
+        print("The restaurant is opened.")
+        
+    def set_number_served(self,number):
+        self.number_served=number
+        
+    def increment_login_attempts(self,inc_number):
+        self.number_served+=inc_number
+        
+restaurant = Restaurant('MC','US')
+print(f"The number is {restaurant.number_served}")
+restaurant.set_number_served(10)
+print(f"The new number is {restaurant.number_served}")
+restaurant.increment_login_attempts(6)
+print(f"The new total number is {restaurant.number_served}")
+
+# 5
+class User:
+    def __init__(self,first_name,last_name,age,country):
+        self.first_name=first_name
+        self.last_name=last_name
+        self.age=age
+        self.country=country
+        self.login_attempts=0
+        
+    def describe_user(self):
+        print(self.first_name,self.last_name,self.age,self.country)
+    def greet_user(self):
+        print("Hello "+self.first_name)
+    def increment_login_attempts(self):
+        self.login_attempts+=1
+    def reset_login_attempts(self):
+        self.login_attempts=0
+        
+user1=User('A','B',20,'China')
+user1.increment_login_attempts()
+user1.increment_login_attempts()
+print(user1.login_attempts)
+user1.reset_login_attempts()
+print(user1.login_attempts)
+
+# 6
+class Restaurant:
+    def __init__(self,restaurant_name,cuisine_type):
+        self.restaurant_name=restaurant_name
+        self.cuisine_type=cuisine_type
+        self.number_served=0
+    
+    def describe_restaurant(self):
+        print(self.restaurant_name)
+        print(self.cuisine_type)
+        
+    def open_restaurant(self):
+        print("The restaurant is opened.")
+        
+    def set_number_served(self,number):
+        self.number_served=number
+        
+    def increment_login_attempts(self,inc_number):
+        self.number_served+=inc_number
+        
+class IceCreamStand(Restaurant):
+    def __init__(self,restaurant_name,cuisine_type):
+        super().__init__(restaurant_name,cuisine_type)
+        self.flavors=['mango','strawberry','banana']
+    def show_icecream(self):
+        print(f"The types include {self.flavors}")
+icecream=IceCreamStand('Ice_Cream','icecream')
+icecream.show_icecream()
+
+# 7
+class User:
+    def __init__(self,first_name,last_name,age,country):
+        self.first_name=first_name
+        self.last_name=last_name
+        self.age=age
+        self.country=country
+        self.login_attempts=0
+        
+    def describe_user(self):
+        print(self.first_name,self.last_name,self.age,self.country)
+    def greet_user(self):
+        print("Hello "+self.first_name)
+    def increment_login_attempts(self):
+        self.login_attempts+=1
+    def reset_login_attempts(self):
+        self.login_attempts=0
+        
+class Admin(User):
+    def __init__(self,first_name,last_name,age,country):
+        super().__init__(first_name,last_name,age,country) # self去掉
+        self.privileges=['can add post',"can delete post","can ban user"]
+    def show_privileges(self):
+        print(self.privileges)
+        
+admin1=Admin('A','B',22,'UK')
+admin1.show_privileges()
+    
+# 8
+class Privileges:
+    def __init__(self):
+        self.privileges=['can add post',"can delete post","can ban user"]
+    def show_privileges(self):
+        print(self.privileges)
+        
+class User:
+    def __init__(self,first_name,last_name,age,country):
+        self.first_name=first_name
+        self.last_name=last_name
+        self.age=age
+        self.country=country
+        self.login_attempts=0
+        
+    def describe_user(self):
+        print(self.first_name,self.last_name,self.age,self.country)
+    def greet_user(self):
+        print("Hello "+self.first_name)
+    def increment_login_attempts(self):
+        self.login_attempts+=1
+    def reset_login_attempts(self):
+        self.login_attempts=0
+        
+class Admin(User):
+    def __init__(self,first_name,last_name,age,country):
+        super().__init__(first_name,last_name,age,country) # self去掉
+        self.privileges=['can add post',"can delete post","can ban user"]
+        self.pri=Privileges()
+    
+admin=Admin('A','B',22,'UK')
+admin.pri.show_privileges()
+
+# 9
+class Car:
+    """A simple attempt to represent a car."""
+
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.odometer_reading = 0
+        
+    def get_descriptive_name(self):
+        long_name = f"{self.year} {self.make} {self.model}"
+        return long_name.title()
+    
+    def read_odometer(self):
+        print(f"This car has {self.odometer_reading} miles on it.")
+        
+    def update_odometer(self, mileage):
+        if mileage >= self.odometer_reading:
+            self.odometer_reading = mileage
+        else:
+            print("You can't roll back an odometer!")
+    
+    def increment_odometer(self, miles):
+        self.odometer_reading += miles
+
+class Battery:
+    """A simple attempt to model a battery for an electric car."""
+    
+    def __init__(self, battery_size=40):
+        """Initialize the battery's attributes."""
+        self.battery_size = battery_size
+
+    def describe_battery(self):
+        """Print a statement describing the battery size."""
+        print(f"This car has a {self.battery_size}-kWh battery.")
+
+    def get_range(self):
+        """Print a statement about the range this battery provides."""
+        if self.battery_size == 40:
+            range = 150
+        elif self.battery_size == 65:
+            range = 225
+        print(f"This car can go about {range} miles on a full charge.")
+        
+    def upgrade_battery(self):
+        if self.battery_size <65:
+            self.battery_size = 65
+
+
+class ElectricCar(Car):
+    """Represent aspects of a car, specific to electric vehicles."""
+    
+    def __init__(self, make, model, year):
+        """
+        Initialize attributes of the parent class.
+        Then initialize attributes specific to an electric car.
+        """
+        super().__init__(make, model, year)
+        self.battery = Battery()
+    
+elecar = ElectricCar('nissan','leaf',2024)
+elecar.battery.get_range()
+elecar.battery.upgrade_battery()
+elecar.battery.get_range()
+
+# 10
+from Restaurant import Restaurant
+restaurant = Restaurant('Pizza Hut', 'Italian')
+restaurant.describe_restaurant()
+
+# 11
+from Admin import Admin
+admin = Admin('Joe', 'Smith', 11,'USA')
+admin.pri.show_privileges()
+
+# 12
+from Admin import Admin
+admin = Admin('Joe', 'Smith', 12,'USA')
+admin.pri.show_privileges()
+
+# 13
+from random import randiot
+class Die:
+    def __init__(self, sides=6):
+        self.sides=sides
+    def roll_die(self):
+        print(randint(1, self.sides))
+
+die1=Die(6)
+for i in range(10):
+    die1.roll_die()
+die2=Die(10)
+for i in range(10):
+    die2.roll_die()
+die3=Die(20)
+for i in range(10):
+    die3.roll_die()
+
+# 14
+from random import choice
+list=['w',3,'c',73,'v','s',5,7,99,1,'h',4,11,52,8]
+four=[]
+for i in range(4):
+    four.append(choice(list))
+print(f"{''.concat(four)} is award number!")
+
+# 15
+from random import choice
+list=['w',3,'c',73,'v','s',5,7,99,1,'h',4,11,52,8]
+four=[]
+for i in range(4):
+    four.append(choice(list))
+print(f"{''.concat(four)} is award number!")
+my_ticket=[]
+i=0
+while True:
+    for i in range(4):
+        my_ticket.append(choice(list))
+    if ''.concat(my_ticket)!=''.concat(four):
+        i+=1
+    else:
+        break
+print(i)
 ```
 
-代码运行结果的文本可以直接粘贴在这里。
+- [第二部分 Codewars Kata挑战](#第二部分)
 
-**注意：不要使用截图，Markdown文档转换为Pdf格式后，截图可能会无法显示。**
+第一题：
+
+```python
+# 1
+class Ship:
+        
+    def __init__(self, draft, crew):
+        self.draft = draft
+        self.crew = crew
+    
+    def is_worth_it(self):
+        return self.draft - self.crew * 1.5 > 20    
+        
+Titanic = Ship(15, 10)
+print(Titanic.is_worth_it())
+
+treasure_ship = Ship(35.1, 10)
+print(treasure_ship.is_worth_it())
+```
+
+第二题：
+
+```python
+# 2
+class Block:
+    
+    def __init__(self, block):
+        self.width = block[0]
+        self.length = block[1]
+        self.height = block[2]
+        
+    def get_width(self):
+        return self.width
+    
+    def get_length(self):
+        return self.length
+    
+    def get_height(self):
+        return self.height
+    
+    def get_volume(self):
+        return self.width * self.length * self.height
+    
+    def get_surface_area(self):
+        return 2 * (self.width * self.length + self.width * self.height + self.length * self.height)
+```
+
+第三题：
+
+```python
+# 3
+import math
+
+class PaginationHelper:
+    
+    def __init__(self, collection, items_per_page):
+        self.collection = collection
+        self.items_per_page = items_per_page
+        
+    def item_count(self):
+        return len(self.collection)
+    
+    def page_count(self):
+
+        return math.ceil(self.item_count() / self.items_per_page)
+    
+    def page_item_count(self, page_index):
+
+        if page_index < 0 or page_index >= self.page_count():
+            return -1
+        
+        elif page_index == self.page_count() - 1: 
+            
+            last_page = self.item_count() % self.items_per_page
+            
+            return self.items_per_page if last_page == 0 else last_page
+        
+        else:
+            return self.items_per_page
+        
+    def page_index(self, item_index):
+        if item_index < 0 or item_index >= self.item_count():
+            return -1
+        else:
+            return item_index // self.items_per_page
+```
+
+第四题：
+
+```python
+# 4
+from math import sqrt
+
+class Vector:
+
+    def __init__(self, iterable):
+        self.v = tuple(x for x in iterable)
+
+    def __str__(self):
+        return str(self.v).replace(' ', '')
+    
+    def check(self, other):
+        if not len(self.v) == len(other.v):
+            raise ValueError('Vectors of different length')
+
+    def add(self, other):
+        self.check(other)
+        return Vector(s + o for s, o in zip(self.v, other.v))
+
+    def subtract(self, other):
+        self.check(other)
+        return Vector(s - o for s, o in zip(self.v, other.v))
+
+    def dot(self, other):
+        self.check(other)
+        return sum(s * o for s, o in zip(self.v, other.v))
+
+    def norm(self):
+        return sqrt(sum(x**2 for x in self.v))
+
+    def equals(self, other):
+        return self.v == other.v
+```
+
+第五题：
+
+```python
+# 5
+class User ():    
+    def __init__ (self):
+        self.RANKS = [-8, -7, -6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6, 7, 8]
+        self.rank = -8
+        self.rank_index = 0
+        self.progress = 0
+        
+    def inc_progress (self, rank):
+        if not rank in self.RANKS:
+            raise ValueError
+        rank_index = self.RANKS.index(rank)
+        if rank_index == self.rank_index:
+            self.progress += 3
+            
+        elif rank_index == self.rank_index - 1:
+            self.progress += 1
+            
+        elif rank_index > self.rank_index:
+            difference = rank_index - self.rank_index
+            self.progress += 10 * difference * difference
+        
+        while self.progress >= 100 and self.rank < 8:
+            self.rank_index += 1
+            self.rank = self.RANKS[self.rank_index]
+            self.progress -= 100    
+        
+            if self.rank == 8:
+                self.progress = 0
+                return
+```
+
+- [第三部分 使用Mermaid绘制程序流程图](#第三部分)
+
+
+```mermaid
+---
+title: Ship
+---
+classDiagram
+    note for Ship "判断船舶是否值得掠夺\n"
+    class Ship{
+        +int draft
+        +int crew
+        +is_worth_it()
+    }
+
+```
 
 ## 实验考查
 
 请使用自己的语言并使用尽量简短代码示例回答下面的问题，这些问题将在实验检查时用于提问和答辩以及实际的操作。
 
-1. Python的类中__init__方法起什么作用？
-2. Python语言中如何继承父类和改写（override）父类的方法。
-3. Python类有那些特殊的方法？它们的作用是什么？请举三个例子并编写简单的代码说明。
+1. `Python`的类中`__init__`方法起什么作用？
+
+在`Python`中，`__init__`方法是一个特殊的方法，称为类的构造函数或初始化方法。当创建类的新实例时，`__init__`方法会自动被调用。它的作用是初始化类的属性和执行类实例创建时需要进行的操作。
+
+`__init__`方法的主要作用是：
+
+(1)初始化类实例的属性：在`__init__`方法中，可以定义并初始化类实例的属性。这些属性将直接存储在类实例的`__dict__`中。
+(2)执行类实例创建时需要进行的操作：例如，从数据库加载数据、初始化日志记录等。
+(3)验证类实例创建时传入的参数：可以在`__init__`方法中检查传入的参数是否符合预期，如果不符合预期，可以抛出异常或者返回错误信息。
+下面是一个简单的示例：
+
+```python
+class Person:
+   def __init__(self, name, age):
+       self.name = name
+       self.age = age
+
+   def say_hello(self):
+       print(f"Hello, my name is {self.name} and I am {self.age} years old.")
+
+# 创建一个Person类的实例
+person1 = Person("Alice", 30)
+
+# 调用say_hello方法
+person1.say_hello()
+```
+
+输出：
+
+```python
+Hello, my name is Alice and I am 30 years old.
+```
+
+在这个示例中，我们定义了一个名为`Person`的类，它具有`__init__`方法和`say_hello`方法。在`__init__`方法中，我们初始化了`name`和`age`属性，并在创建类实例时接收这两个参数。然后，我们可以在`say_hello`方法中使用这些属性。
+
+
+2. `Python`语言中如何继承父类和改写（`override`）父类的方法。
+
+在`Python`中，类继承是通过关键字`class`和(`parent_class`)来实现的。类的方法可以被继承，也可以被覆盖（即同名的方法在子类中被重写）。
+
+下面是一个简单的示例，演示了如何使用`class`关键字定义一个类，以及如何使用(`parent_class`)关键字继承一个类：
+
+```python
+class Animal:
+   def __init__(self, name):
+       self.name = name
+
+   def speak(self):
+       return "I am an animal."
+
+class Dog(Animal):
+   def __init__(self, name, breed):
+       super().__init__(name)  # 调用父类的 __init__ 方法
+       self.breed = breed
+
+   def speak(self):
+       # 调用子类的 speak 方法，并添加自定义内容
+       return super().speak() + " And I am a dog."
+
+dog1 = Dog("Buddy", "Golden Retriever")
+print(dog1.name)  # 输出：Buddy
+print(dog1.breed)  # 输出：Golden Retriever
+print(dog1.speak())  # 输出：I am an animal. And I am a dog.
+```
+
+在这个示例中，定义了一个名为`Animal`的类和一个名为`Dog`的子类。`Dog`类继承了`Animal`类。在`Dog`类的`__init__`方法中，我们使用`super()`关键字调用`Animal`类的`__init__`方法，并添加了自己的属性`breed`。在`Dog`类的`speak`方法中，我们使用`super()`关键字调用`Animal`类的`speak`方法，并添加了自己的内容。
+
+当我们创建一个`Dog`类的实例`dog1`时，我们发现`dog1`对象同时具有`name`和`breed`属性，并且`speak`方法也具有自定义内容。这就是类继承和方法覆盖（`override`）的工作原理。
+
+3. `Python`类有那些特殊的方法？它们的作用是什么？请举三个例子并编写简单的代码说明。
+
+以下是一些`Python`类中常见的特殊方法及其作用：
+
+`__init__`方法：构造函数，用于初始化类的实例。当创建类的新实例时，`__init__`方法会自动被调用。
+`__str__`方法：字符串表示方法，用于返回类实例的字符串表示。当使用`print`函数打印类实例时，`__str__`方法会被调用。
+`__repr__`方法：表示方法，用于返回类实例的表示。当使用`reprlib`库中的`repr`函数返回类实例的表示时，`__repr__`方法会被调用。
+下面是一些使用这些特殊方法的简单示例：
+
+```python
+# 定义一个简单的类
+class Person:
+  def __init__(self, name, age):
+      self.name = name
+      self.age = age
+
+  def __str__(self):
+      return f"{self.name} is {self.age} years old."
+
+  def __repr__(self):
+      return f"Person('{self.name}', {self.age})"
+
+# 创建一个Person类的实例
+person1 = Person("Alice", 30)
+
+# 打印person1
+print(person1)
+
+# 使用reprlib库的repr函数打印person1
+from reprlib import repr
+print(repr(person1))
+```
+
+输出：
+
+```python
+Alice is 30 years old.
+Person('Alice', 30)
+```
+
+在这个示例中，我们定义了一个名为`Person`的类，它具有`__init__`方法和`__str__`和`__repr__`方法。在`__init__`方法中，我们初始化了`name`和`age`属性。然后，我们分别在`__str__`和`__repr__`方法中返回了字符串表示和表示字符串。最后，我们创建了一个`Person`类的实例`person1`，并使用`print`函数和`reprlib`库的`repr`函数打印了`person1`。
 
 ## 实验总结
 
-总结一下这次实验你学习和使用到的知识，例如：编程工具的使用、数据结构、程序语言的语法、算法、编程技巧、编程思想。
+本次的`Python`面向对象编程实验，我完成了教材第九章的类章节，编写`CodeWars`中的编程题，使用`Mermaid`绘制程序流程图并对本实验的思考题进行解答。通过这次实验，我学习了`Python`面向对象编程的基本概念，包括类、对象、属性、方法、继承等，编写了`Python`类、继承和重写等方面的代码，并尝试导入模块和库。
+
+总而言之，我对`Python`面向对象编程有了更深的理解。
